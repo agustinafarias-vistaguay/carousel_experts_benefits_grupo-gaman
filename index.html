@@ -341,16 +341,36 @@
         const btnCotizar = document.getElementById('btn-cotizar');
         if (btnCotizar) {
             btnCotizar.addEventListener('click', (event) => {
-                event.preventDefault();
                 const payload = {
                     type: 'OPEN_URL',
                     url: "https://docs.google.com/forms/d/e/1FAIpQLSf0WGy-AvYlM7cOlAM_koWLhC-Gm3LGYlwKyx-OaPW2xemH0g/viewform", 
                 };
-                
+
+                // Detectar si la página está embebida en un iframe, en un WebView de una app,
+                // o si tiene parámetros en la URL indicando que está en la app
+                const isIframe = window.self !== window.parent;
+                const isReactNative = !!window.ReactNativeWebView;
+                const urlParams = new URLSearchParams(window.location.search);
+                const hasAppParam = urlParams.get('embed') === 'true' || urlParams.get('webview') === 'true' || urlParams.get('app') === 'true';
+
+                const isEmbedded = isIframe || isReactNative || hasAppParam;
+
+                // Si está embebida en el contenedor de la app, prevenimos la navegación por defecto
+                // y dejamos que la app lo controle mediante el postMessage.
+                if (isEmbedded) {
+                    event.preventDefault();
+                }
+
                 // Enviar postMessage al contenedor (parent window para iframes/webviews)
                 if (window.parent) {
                     window.parent.postMessage(payload, '*');
                 }
+                
+                // Enviar también al objeto inyectado de React Native si existe
+                if (window.ReactNativeWebView && typeof window.ReactNativeWebView.postMessage === 'function') {
+                    window.ReactNativeWebView.postMessage(JSON.stringify(payload));
+                }
+
                 // También enviar al window actual por si se está escuchando localmente
                 window.postMessage(payload, '*');
             });
