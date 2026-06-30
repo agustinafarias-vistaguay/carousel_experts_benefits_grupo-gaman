@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <title>Drone Insurance - WebView</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#faf9fe",
+                        "primary": "#0058bc",
+                        "on-background": "#1a1b1f",
+                        "on-primary-fixed-variant": "#004493",
+                        "tertiary": "#8a2bb9",
+                        "surface-tint": "#005bc1",
+                        "surface": "#faf9fe",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-dim": "#dad9df",
+                        "inverse-primary": "#adc6ff",
+                        "inverse-on-surface": "#f1f0f5",
+                        "on-tertiary-fixed-variant": "#7201a2",
+                        "on-secondary-container": "#00732a",
+                        "secondary-fixed-dim": "#53e16f",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eeedf3",
+                        "on-surface": "#1a1b1f",
+                        "on-secondary-fixed-variant": "#00531c",
+                        "on-tertiary-container": "#fffbff",
+                        "secondary-fixed": "#72fe88",
+                        "outline-variant": "#c1c6d7",
+                        "surface-container-low": "#f4f3f8",
+                        "secondary-container": "#6ffb85",
+                        "on-primary-container": "#fefcff",
+                        "tertiary-fixed": "#f6d9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#310048",
+                        "tertiary-fixed-dim": "#e8b3ff",
+                        "on-surface-variant": "#414755",
+                        "inverse-surface": "#2f3034",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "background": "#faf9fe",
+                        "outline": "#717786",
+                        "primary-container": "#0070eb",
+                        "surface-container-highest": "#e3e2e7",
+                        "surface-variant": "#e3e2e7",
+                        "tertiary-container": "#a649d5",
+                        "error-container": "#ffdad6",
+                        "secondary": "#006e28",
+                        "on-primary-fixed": "#001a41",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e9e7ed",
+                        "on-secondary-fixed": "#002107",
+                        "brand-green": "#47C278"
+                    },
+                    spacing: {
+                        "xl": "32px",
+                        "gutter-mobile": "16px",
+                        "md": "16px",
+                        "base": "8px",
+                        "xxl": "48px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "margin-mobile": "20px",
+                        "lg": "24px"
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                    },
+                    fontSize: {
+                        "custom-h1": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "custom-sub": ["19px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "custom-section": ["16px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "600" }],
+                        "custom-label": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "custom-card-title": ["12px", { "lineHeight": "16px", "fontWeight": "700" }],
+                        "custom-caption": ["11px", { "lineHeight": "14px", "fontWeight": "400" }],
+                        "custom-xs": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf9fe;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(229, 229, 234, 0.5);
+        }
+
+        .stepper-line::after {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            bottom: -8px;
+            width: 2px;
+            background-color: #E5E5EA;
+        }
+
+        .last-step .stepper-line::after {
+            display: none;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="flex justify-center min-h-screen">
+    <!-- Max-width container for mobile-first WebView (SCREEN_8) -->
+    <main class="w-full max-width-[480px] bg-background min-h-screen shadow-lg relative pb-xxl overflow-x-hidden">
+        <!-- Section 1: Hero -->
+        <section class="pt-[60px] px-margin-mobile flex flex-col gap-md">
+            <h1 class="text-custom-h1 text-on-surface uppercase">
+                ¿TU CAPITAL DE TRABAJO ESTÁ PROTEGIDO?
+            </h1>
+            <p class="text-custom-sub text-on-surface-variant">
+                Contratá un seguro para tu Dron con nosotros y volá tranquilo.
+            </p>
+            <div class="aspect-[2/1] w-full rounded-xl overflow-hidden mt-sm shadow-sm">
+                <img class="w-full h-full object-cover"
+                    data-alt="A professional agricultural drone flying over a lush green corn field during a vibrant golden hour sunset. The image has a clean, high-clarity corporate aesthetic with soft bokeh in the background. The lighting is warm and cinematic, emphasizing the high-tech sensors of the drone. Minimalist light-mode colors with deep blue accents on the drone frame."
+                    src="images/alea-groker-grupo-gaman.jpg" />
+            </div>
+        </section>
+        <!-- Section 2: Coverages -->
+        <section class="mt-xl px-margin-mobile">
+            <div class="flex flex-col gap-xs mb-md">
+                <h2 class="text-custom-section text-on-surface">¿Qué cubren nuestros seguros?</h2>
+                <div class="inline-flex">
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-md"><!-- Card 1 -->
+                <div
+                    class="bg-white p-md rounded-xl shadow-sm flex flex-col items-center text-center gap-sm border border-outline-variant/30">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined">policy</span>
+                    </div>
+                    <div class="flex flex-col gap-xs">
+                        <span class="text-custom-card-title text-on-surface leading-tight">Responsabilidad Civil</span>
+                        <p class="text-custom-caption text-on-surface-variant">Protección por reclamos de terceros.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div
+                    class="bg-white p-md rounded-xl shadow-sm flex flex-col items-center text-center gap-sm border border-outline-variant/30">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined">agriculture</span>
+                    </div>
+                    <div class="flex flex-col gap-xs">
+                        <span class="text-custom-card-title text-on-surface leading-tight">Protección por Deriva</span>
+                        <p class="text-custom-caption text-on-surface-variant">Cobertura ante daños a cultivos vecinos.
+                        </p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div
+                    class="bg-white p-md rounded-xl shadow-sm flex flex-col items-center text-center gap-sm border border-outline-variant/30 col-span-2">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined">shield</span>
+                    </div>
+                    <div class="flex flex-col gap-xs">
+                        <span class="text-custom-card-title text-on-surface leading-tight">Protección del Equipo</span>
+                        <p class="text-custom-caption text-on-surface-variant">Protege tu dron tanto ante un daño total
+                            como parcial del equipo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section 3: Prices -->
+        <section class="mt-xl px-margin-mobile">
+            <h2 class="text-custom-section text-on-surface mb-md">Protección para vos y toda tu flota</h2>
+            <div class="flex flex-col gap-md"><!-- Base Rate 1 -->
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md flex items-center justify-between">
+                    <span class="text-custom-label font-bold text-on-surface">Responsabilidad Civil Solo</span>
+                    <span class="text-custom-label font-semibold text-secondary">ARS 58.000 / mes</span>
+                </div>
+                <!-- Base Rate 2 -->
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md flex items-center justify-between">
+                    <span class="text-custom-label font-bold text-on-surface">Responsabilidad Civil + Deriva</span>
+                    <span class="text-custom-label font-semibold text-secondary">Sujeto a cotización</span>
+                </div>
+                <!-- Price Card: Mavic 3M -->
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md flex items-center gap-md">
+                    <div
+                        class="w-16 h-16 rounded-lg bg-surface-container flex-shrink-0 flex items-center justify-center">
+                        <img class="w-12 h-12 object-contain"
+                            data-alt="A studio product shot of a DJI Mavic 3M drone on a white background. The lighting is clean and professional with soft shadows, highlighting the precision optics. High-key aesthetic matching a premium insurance product layout."
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV3b5kXvaQ3xgSMYBOAepHHCpYNExim0F5jbHpLI53Hjc3nsYZUY_Lyghn64PboWUa6K1s2DSpJyt4bXQQvRaqV9yj_ckIiqIFcpoxJsgphuRamXmeknUTXqGsDcIHhDO-5e8v6aViv5adm3BEENLNOzmiflLO8tQCdAP6jxj716qnXJ5cSHutYJSooM1p_xpch5dlF37awz9Z5AVqSUiIRqxROngZaNGVOvr_IRpXz47hQUQC_MDW5w_C5jxA_kDr6G5PG3b5jcQ" />
+                    </div>
+                    <div class="flex flex-col flex-1">
+                        <h3 class="text-custom-label font-bold text-on-surface">Mavic 3M</h3>
+                        <div class="flex flex-col gap-[2px] mt-xs">
+                            <p class="text-custom-xs text-on-surface-variant flex justify-between">
+                                <span>Daño total</span>
+                                <span class="font-semibold text-secondary">USD 16,92/mes</span>
+                            </p>
+                            <p class="text-custom-xs text-on-surface-variant flex justify-between">
+                                <span>Todo riesgo</span>
+                                <span class="font-semibold text-secondary">USD 33,83/mes</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Price Card: Agras T100 -->
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md flex items-center gap-md">
+                    <div
+                        class="w-16 h-16 rounded-lg bg-surface-container flex-shrink-0 flex items-center justify-center">
+                        <img class="w-12 h-12 object-contain"
+                            data-alt="A close-up high-resolution image of a DJI Agras T100 heavy-duty agriculture drone. Professional lighting highlights the sturdy frame and spraying components. The background is a soft neutral grey, creating a high-end corporate feel for industrial insurance services."
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoTJrFOhpn_6umg1NkRTiKOnaiiCqP4I9OBU28in5_yVSf4Xl9lKlQgEPnOpzjkfUh-nOP1TwbtIR3h2ZIJa_yGHKTrZlvD5m4TgWNcJk87XV7mGjFfmHIVvwiP8YS7y9mYHy0DZ-YQ56NjKXX9Qc-4voJ-13hQ8ereXXGri82Mcp0VUUYQLsDhGtCtEiJwY9qYmwzxf8Ki_OY5ea0D074OZB4d1tSL82KE_L6BrCt3GMEZ-Ncb7vUfsF4vtMUJN6x7BmfQkSLCLI" />
+                    </div>
+                    <div class="flex flex-col flex-1">
+                        <h3 class="text-custom-label font-bold text-on-surface">Agras T100</h3>
+                        <div class="flex flex-col gap-[2px] mt-xs">
+                            <p class="text-custom-xs text-on-surface-variant flex justify-between">
+                                <span>Daño total</span>
+                                <span class="font-semibold text-secondary">USD 108,75/mes</span>
+                            </p>
+                            <p class="text-custom-xs text-on-surface-variant flex justify-between">
+                                <span>Todo riesgo</span>
+                                <span class="font-semibold text-secondary">USD 217,5/mes</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-custom-xs text-on-surface-variant mt-md italic">Los valores corresponden al día de hoy y
+                están estrictamente sujetos a cotización personalizada (pueden variar).</p>
+        </section>
+        <!-- Section 4: Steps -->
+        <section class="mt-xl px-margin-mobile">
+            <h2 class="text-custom-section text-on-surface mb-md">Solicitarlo es muy fácil</h2>
+            <div class="flex flex-col gap-lg"><!-- Step 1 -->
+                <div class="relative flex gap-md">
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-custom-section font-bold z-10">
+                            1</div>
+                        <div class="w-[2px] flex-1 bg-outline-variant/30 my-1"></div>
+                    </div>
+                    <div class="flex-1 bg-white p-md rounded-xl shadow-sm border border-outline-variant/30 mb-md">
+                        <h4 class="text-custom-label text-on-surface font-bold">Registrate</h4>
+                        <p class="text-custom-caption text-on-surface-variant">Crea tu cuenta en Vistaguay Experts en
+                            pocos segundos para iniciar el proceso.</p>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative flex gap-md">
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-custom-section font-bold z-10">
+                            2</div>
+                        <div class="w-[2px] flex-1 bg-outline-variant/30 my-1"></div>
+                    </div>
+                    <div class="flex-1 bg-white p-md rounded-xl shadow-sm border border-outline-variant/30 mb-md">
+                        <h4 class="text-custom-label text-on-surface font-bold">Completá el formulario</h4>
+                        <p class="text-custom-caption text-on-surface-variant">Al hacer clic en "Cotizar mi Dron" abajo,
+                            completá los datos técnicos de tu equipo en el formulario de destino.</p>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="relative flex gap-md">
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-custom-section font-bold z-10">
+                            3</div>
+                    </div>
+                    <div class="flex-1 bg-white p-md rounded-xl shadow-sm border border-outline-variant/30">
+                        <h4 class="text-custom-label text-on-surface font-bold">Un asesor Gaman te contactará</h4>
+                        <p class="text-custom-caption text-on-surface-variant">Un experto se comunicará con vos para
+                            resolver tus dudas y encontrar la mejor opción de cobertura para tu negocio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section 5: CTA -->
+        <section class="mt-xxl px-margin-mobile">
+            <div
+                class="bg-brand-green rounded-2xl p-lg flex flex-col items-center gap-lg shadow-xl shadow-brand-green/20">
+                <p class="text-white text-custom-sub font-semibold text-center leading-tight">
+                    Los accidentes ocurren.<br />Que no te cuesten tu negocio.
+                </p>
+                <a id="btn-cotizar" class="w-full h-12 bg-white text-brand-green font-bold text-custom-label rounded-full flex items-center justify-center hover:opacity-90 active:scale-95 transition-all decoration-none"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSf0WGy-AvYlM7cOlAM_koWLhC-Gm3LGYlwKyx-OaPW2xemH0g/viewform"
+                    target="_blank">
+                    Cotizar mi Dron
+                </a>
+            </div>
+        </section>
+        <div class="flex items-center justify-center opacity-80 pt-md border-t border-white/20 w-full">
+            <img src="images/Alea Broker-Grupo Gaman-Logo Color.svg" alt="Alianza ALEA Gaman Vistaguay"
+                class="h-7 w-auto object-contain" />
+        </div>
+    </main>
+    <script>
+        // Smooth scroll and tap feedback for cards
+        document.querySelectorAll('.glass-card, .bg-surface-container-lowest').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.transform = 'scale(0.98)';
+                card.style.transition = 'transform 0.1s ease';
+            });
+            card.addEventListener('touchend', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Event listener for "Cotizar mi Dron" button to send postMessage
+        const btnCotizar = document.getElementById('btn-cotizar');
+        if (btnCotizar) {
+            btnCotizar.addEventListener('click', (event) => {
+                event.preventDefault();
+                const payload = {
+                    type: 'OPEN_URL',
+                    url: "https://docs.google.com/forms/d/e/1FAIpQLSf0WGy-AvYlM7cOlAM_koWLhC-Gm3LGYlwKyx-OaPW2xemH0g/viewform", 
+                };
+                
+                // Enviar postMessage al contenedor (parent window para iframes/webviews)
+                if (window.parent) {
+                    window.parent.postMessage(payload, '*');
+                }
+                // También enviar al window actual por si se está escuchando localmente
+                window.postMessage(payload, '*');
+            });
+        }
+    </script>
+</body>
+
+</html>
