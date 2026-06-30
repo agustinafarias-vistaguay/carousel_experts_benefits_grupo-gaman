@@ -201,14 +201,17 @@
             <div class="flex flex-col gap-md"><!-- Base Rate 1 -->
                 <div
                     class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md flex items-center justify-between">
-                    <span class="text-custom-label font-bold text-on-surface">Responsabilidad Civil Solo</span>
+                    <span class="text-custom-label font-bold text-on-surface">Responsabilidad Civil</span>
                     <span class="text-custom-label font-semibold text-secondary">ARS 58.000 / mes</span>
                 </div>
                 <!-- Base Rate 2 -->
                 <div
                     class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md flex items-center justify-between">
-                    <span class="text-custom-label font-bold text-on-surface">Responsabilidad Civil + Deriva</span>
-                    <span class="text-custom-label font-semibold text-secondary">Sujeto a cotización</span>
+                    <span class="text-custom-label font-bold text-on-surface flex flex-col">
+                        <span>Responsabilidad Civil</span>
+                        <span>+ Deriva</span>
+                    </span>
+                    <span class="text-custom-label font-semibold text-secondary">ARS 58.000 / mes</span>
                 </div>
                 <!-- Price Card: Mavic 3M -->
                 <div
@@ -313,7 +316,8 @@
                 <p class="text-white text-custom-sub font-semibold text-center leading-tight">
                     Los accidentes ocurren.<br />Que no te cuesten tu negocio.
                 </p>
-                <a id="btn-cotizar" class="w-full h-12 bg-white text-brand-green font-bold text-custom-label rounded-full flex items-center justify-center hover:opacity-90 active:scale-95 transition-all decoration-none"
+                <a id="btn-cotizar"
+                    class="w-full h-12 bg-white text-brand-green font-bold text-custom-label rounded-full flex items-center justify-center hover:opacity-90 active:scale-95 transition-all decoration-none"
                     href="https://docs.google.com/forms/d/e/1FAIpQLSf0WGy-AvYlM7cOlAM_koWLhC-Gm3LGYlwKyx-OaPW2xemH0g/viewform"
                     target="_blank">
                     Cotizar mi Dron
@@ -343,7 +347,7 @@
             btnCotizar.addEventListener('click', (event) => {
                 const payload = {
                     type: 'OPEN_URL',
-                    url: "https://docs.google.com/forms/d/e/1FAIpQLSf0WGy-AvYlM7cOlAM_koWLhC-Gm3LGYlwKyx-OaPW2xemH0g/viewform", 
+                    url: "https://docs.google.com/forms/d/e/1FAIpQLSf0WGy-AvYlM7cOlAM_koWLhC-Gm3LGYlwKyx-OaPW2xemH0g/viewform",
                 };
 
                 // Detectar si la página está embebida en un iframe, en un WebView de una app,
@@ -365,7 +369,7 @@
                 if (window.parent) {
                     window.parent.postMessage(payload, '*');
                 }
-                
+
                 // Enviar también al objeto inyectado de React Native si existe
                 if (window.ReactNativeWebView && typeof window.ReactNativeWebView.postMessage === 'function') {
                     window.ReactNativeWebView.postMessage(JSON.stringify(payload));
